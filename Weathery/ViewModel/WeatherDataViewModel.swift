@@ -10,6 +10,8 @@ import Foundation
 @MainActor class WeatherDataViewModel: ObservableObject {
     /// A list tracking weather data for all searched cities
     @Published var weatherData = [Weather]()
+    @Published var sheetIsPresented = false
+    @Published var tempMeasure = "K"
     
     /**
      Gets the weather from the API for a particular city and appends the weather data to a list
@@ -27,6 +29,10 @@ import Foundation
             }
             weatherData.append(response)
         }
+    }
+    
+    func toggleSheet() {
+        sheetIsPresented.toggle()
     }
     
 }

@@ -13,16 +13,29 @@ struct CityWeatherView: View {
     
     var body: some View {
         VStack {
-            Text(viewModel.cityName)
-            Text(viewModel.formattedCurrentTemp)
+            Spacer()
+            Text(viewModel.cityName).padding()
+                .font(.title)
+            Group {
+                Text(viewModel.formattedCurrentTemp)
+                    .font(.largeTitle)
+                Text("high: \(viewModel.high)  low: \(viewModel.low)")
+            }
+            .padding()
+            
+            Image(systemName: viewModel.icon)
+                .font(.largeTitle)
+            Text(viewModel.description)
+            
+            Spacer()
         }
         .padding()
-        .background(Color.blue.opacity(0.1), in: RoundedRectangle(cornerRadius: 10))
+        .background(Color.gray.opacity(0.2), in: RoundedRectangle(cornerRadius: 10))
     }
 }
 
 struct CityWeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        CityWeatherView(viewModel: CityWeatherVM(model: Weather.example))
+        CityWeatherView(viewModel: CityWeatherVM(model: Weather.example, tempMeasure: "K"))
     }
 }
